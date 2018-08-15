@@ -12,15 +12,26 @@ const cardList = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa f
 
 //Selection
 const container = document.querySelector('.container');
-const ul = document.createElement('ul');
 const board = document.querySelector('.gameBoard');
+const ul = document.createElement('ul');
+const li = document.createElement('li');
+const iElement = document.createElement('i');
+
 
 //adding deck class to ul
 ul.className += ' deck';
 board.appendChild(ul);
 
+
 //suffle cardList
 shuffle(cardList);
+
+for (i=0; i <= cardList.length; i++){
+    iElement.className += cardList[i];
+    li.appendChild(iElement);
+
+    li.appendChild(ul);
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
