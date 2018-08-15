@@ -1,9 +1,9 @@
 /*
  * Create a list that holds all of your cards
  */
-const cardList = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"]
+const cardList = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb", "fa fa-leaf", "fa fa-leaf"]
 
-/*
+/* DONE
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
@@ -14,24 +14,25 @@ const cardList = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa f
 const container = document.querySelector('.container');
 const board = document.querySelector('.gameBoard');
 const ul = document.createElement('ul');
-const li = document.createElement('li');
-const iElement = document.createElement('i');
-
 
 //adding deck class to ul
 ul.className += ' deck';
-board.appendChild(ul);
-
 
 //suffle cardList
 shuffle(cardList);
 
-for (i=0; i <= cardList.length; i++){
+// loop through suffled deck and append to appear on screen
+for (i=0; i < cardList.length; i++){
+    const iElement = document.createElement('i');
     iElement.className += cardList[i];
+    const li = document.createElement('li');
+    li.className += 'card';
     li.appendChild(iElement);
 
-    li.appendChild(ul);
+    ul.appendChild(li);
 }
+
+board.appendChild(ul);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
