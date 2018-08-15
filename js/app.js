@@ -54,16 +54,26 @@ function shuffle(array) {
  * DONE set up the event listener for a card. If a card is clicked:
  * DONE - display the card's symbol (put this functionality in another function that you call from this one)
  * DONE - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
+ * DONE - if the list already has another card, check to see if the two cards match
  * DONE + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+ * DONE + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+ * DONE  + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
 
 let hasFlippedCard = false;
 let firstCard, secondCard;
+let movesLeft = 3;
+
+
+// Display Moves
+let displayMoves = document.querySelector('.moves');
+displayMoves.textContent = movesLeft;
+
+// Select stars
+let childStars = document.querySelectorAll('.fa-star')
+
 
 // flipCard function 
 function flipCard(){
@@ -86,12 +96,25 @@ function flipCard(){
 
 // match the card when clicked function
 function checkForMatch(){
-    if (firstCard.childNodes[0].className === secondCard.childNodes[0].className){
-        // it's a match
+    let isMatch = firstCard.childNodes[0].className === secondCard.childNodes[0].className;
+
+    if (isMatch){
         disableCards();
     } else {
         unflipCards();
+        scoreUpdateUI();
     }
+}
+
+function scoreUpdateUI (){
+    childStars[movesLeft - 1].remove();
+    movesLeft--;
+    displayMoves.textContent = movesLeft;
+    setTimeout(function(){
+        if (movesLeft === 0){
+        alert('Game Over!')
+    };
+    }, 500);
 }
 
 // freeze the card if matched function
@@ -119,7 +142,3 @@ const card = document.querySelectorAll('.card');
 for (j=0; j < card.length; j++){
     card[j].addEventListener('click', flipCard)   
 }
-
-
- 
-
