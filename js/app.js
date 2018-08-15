@@ -115,22 +115,47 @@ function scoreUpdateUI (){
     displayMoves.textContent = movesLeft;
     setTimeout(function(){
         if (movesLeft === 0){
-            swal({
-                title: "Game Over!",
-                text: "would you like to play again?",
-                icon: "error",
-                button: "Aww yiss!",
+            swal("Game Over", "would you like to play again", "error", {
+                buttons: {
+                  play: {
+                    text: "Aww yiss",
+                    value: "again",
+                  },
+                },
+              })
+              .then((value) => {
+                switch (value) {
+         
+                  case "again":
+                    resetBoard();
+                    break;
+                }
               });
-    };
+        };
     }, 500);
 
 
 }
 
+// swal({
+//     title: "Game Over!",
+//     text: "would you like to play again?",
+//     icon: "error",
+//     button: "Aww yiss!",
+//   });
+
+function resetBoard(){
+    [hasFlippedCard, lockBoard] = [false, false];
+    [firstCard, secondCard] = [null, null]
+}
+
+
 // freeze the card if matched function
 function disableCards(){
     firstCard.removeEventListener('click', flipCard);
     secondCard.removeEventListener('click', flipCard);
+
+    resetBoard();
 }
 
 // unflip and cover the card if NOT matched function
@@ -144,7 +169,7 @@ function unflipCards(){
         secondCard.classList.remove('open')
         secondCard.classList.remove('show')
 
-        lockBoard = false;
+        resetBoard();
     }, 1500);  
 }
 
