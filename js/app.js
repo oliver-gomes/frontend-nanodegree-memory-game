@@ -65,6 +65,7 @@ function shuffle(array) {
 let hasFlippedCard = false;
 let firstCard, secondCard;
 
+// flipCard function 
 function flipCard(){
     this.classList.add('open');
     this.classList.add('show');
@@ -79,25 +80,42 @@ function flipCard(){
         secondCard = this;
 
         // do card match
-        if (firstCard.childNodes[0].className === secondCard.childNodes[0].className){
-            firstCard.removeEventListener('click', flipCard);
-            secondCard.removeEventListener('click', flipCard);
-        } else {
-            setTimeout(function(){
-                firstCard.classList.remove('open')
-                firstCard.classList.remove('show')
-                secondCard.classList.remove('open')
-                secondCard.classList.remove('show')
-            }, 1500);   
-        }
+        checkForMatch();
     }
 };
 
+// match the card when clicked function
+function checkForMatch(){
+    if (firstCard.childNodes[0].className === secondCard.childNodes[0].className){
+        // it's a match
+        disableCards();
+    } else {
+        unflipCards();
+    }
+}
 
+// freeze the card if matched function
+function disableCards(){
+    firstCard.removeEventListener('click', flipCard);
+    secondCard.removeEventListener('click', flipCard);
+}
 
+// unflip and cover the card if NOT matched function
+function unflipCards(){
+    setTimeout(function(){
+        // not a match
+        firstCard.classList.remove('open')
+        firstCard.classList.remove('show')
+        secondCard.classList.remove('open')
+        secondCard.classList.remove('show')
+    }, 1500);  
+}
+
+// select all the cards into an array
 const card = document.querySelectorAll('.card');
-// const li = document.querySelector('li');
 
+// loop through the array and add the event to each cards
+// addEventListener to all the card on click to flip the cards
 for (j=0; j < card.length; j++){
     card[j].addEventListener('click', flipCard)   
 }
