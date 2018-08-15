@@ -63,6 +63,7 @@ function shuffle(array) {
 
 
 let hasFlippedCard = false;
+let lockBoard = false;
 let firstCard, secondCard;
 let movesLeft = 3;
 
@@ -77,6 +78,8 @@ let childStars = document.querySelectorAll('.fa-star')
 
 // flipCard function 
 function flipCard(){
+    if (lockBoard) return;
+
     this.classList.add('open');
     this.classList.add('show');
     
@@ -112,9 +115,16 @@ function scoreUpdateUI (){
     displayMoves.textContent = movesLeft;
     setTimeout(function(){
         if (movesLeft === 0){
-        alert('Game Over!')
+            swal({
+                title: "Game Over!",
+                text: "would you like to play again?",
+                icon: "error",
+                button: "Aww yiss!",
+              });
     };
     }, 500);
+
+
 }
 
 // freeze the card if matched function
@@ -125,12 +135,16 @@ function disableCards(){
 
 // unflip and cover the card if NOT matched function
 function unflipCards(){
+    lockBoard = true;
+
     setTimeout(function(){
         // not a match
         firstCard.classList.remove('open')
         firstCard.classList.remove('show')
         secondCard.classList.remove('open')
         secondCard.classList.remove('show')
+
+        lockBoard = false;
     }, 1500);  
 }
 
