@@ -182,9 +182,17 @@ function resetGame(){
     lockBoard = false;
     let card = document.querySelectorAll('.card');
     for (i = 0; i < card.length; i++){
-        if(card[i].className = 'open'){
-            card[i].unflip();
-        }
+        // lockBoard = true;
+        card[i].classList.remove('open');
+        card[i].classList.remove('show');
+        card[i].addEventListener('click', flipCard);
+        card[i].addEventListener('click', flipCard);
+   
+    }
+
+    var deck = document.querySelector('.deck');
+    for (var i = deck.children.length; i >= 0; i--) {
+        deck.appendChild(deck.children[Math.random() * i | 0]);
     }
 };
 
@@ -197,7 +205,16 @@ restartButton.addEventListener('click', resetGame);
 //     swal('Hey')
 // }
 
+function checkWinner(){
+    let card = document.querySelectorAll('card');
 
+    for( i = 0; i <card.length; i++){
+        if (card[i].className === 'open' && card[card.length - 1] === 'open'){
+            console.log('winner')
+        }
+    }
+    // let isMatch = firstCard.childNodes[0].className === secondCard.childNodes[0].className;
+}
 
 
 // loop through the array and add the event to each cards
