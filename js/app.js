@@ -65,16 +65,18 @@ function shuffle(array) {
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
-let movesLeft = 3;
+let movesMade = 0;
 
 
 // Display Moves
 let displayMoves = document.querySelector('.moves');
-displayMoves.textContent = movesLeft;
+displayMoves.textContent = movesMade;
 
 // Select stars
-let childStars = document.querySelectorAll('.fa-star')
+let parentStars = document.querySelectorAll('.stars li')
 
+let childStars = document.querySelectorAll('.fa-star')
+console.log({parentStars, childStars})
 
 // flipCard function 
 function flipCard(){
@@ -110,39 +112,32 @@ function checkForMatch(){
 }
 
 function scoreUpdateUI (){
-    childStars[movesLeft - 1].remove();
-    movesLeft--;
-    displayMoves.textContent = movesLeft;
-    setTimeout(function(){
-        if (movesLeft === 0){
-            swal("Game Over", "would you like to play again", "error", {
-                buttons: {
-                  play: {
-                    text: "Aww yiss",
-                    value: "again",
-                  },
-                },
-              })
-              .then((value) => {
-                switch (value) {
+    // childStars[movesLeft - 1].remove();
+    movesMade++;
+    displayMoves.textContent = movesMade;
+    // setTimeout(function(){
+    //     if (movesLeft === 0){
+    //         swal("Game Over", "would you like to play again?", "error", {
+    //             buttons: {
+    //               play: {
+    //                 text: "Aww yiss",
+    //                 value: "again",
+    //               },
+    //             },
+    //           })
+    //           .then((value) => {
+    //             switch (value) {
          
-                  case "again":
-                    resetBoard();
-                    break;
-                }
-              });
-        };
-    }, 500);
+    //               case "again":
+    //                 // resetGame();
+    //                 break;
+    //             }
+    //           });
+    //     };
+    // }, 500);
 
 
 }
-
-// swal({
-//     title: "Game Over!",
-//     text: "would you like to play again?",
-//     icon: "error",
-//     button: "Aww yiss!",
-//   });
 
 function resetBoard(){
     [hasFlippedCard, lockBoard] = [false, false];
@@ -170,11 +165,40 @@ function unflipCards(){
         secondCard.classList.remove('show')
 
         resetBoard();
-    }, 1500);  
+    }, 1000);  
 }
+
 
 // select all the cards into an array
 const card = document.querySelectorAll('.card');
+
+
+// have bug need fixed
+function resetGame(){
+    let displayMoves = document.querySelector('.moves');
+    movesMade = 0;
+    displayMoves.textContent = movesMade;
+    hasFlippedCard = false;
+    lockBoard = false;
+    let card = document.querySelectorAll('.card');
+    for (i = 0; i < card.length; i++){
+        if(card[i].className = 'open'){
+            card[i].unflip();
+        }
+    }
+};
+
+
+
+let restartButton = document.querySelector('.restart');
+restartButton.addEventListener('click', resetGame);
+
+// function(){
+//     swal('Hey')
+// }
+
+
+
 
 // loop through the array and add the event to each cards
 // addEventListener to all the card on click to flip the cards
