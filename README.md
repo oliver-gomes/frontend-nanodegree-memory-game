@@ -1,20 +1,30 @@
 # Memory Game Project
+This Memory Game App is a project from the [Front End Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) by [Udacity](https://www.udacity.com/).
 
+![project image](https://oliver-gomes.github.io/projects/memory-game/img/memory-game.gif)
 ## Table of Contents
 
+* [How to play](#howtoplay)
 * [Instructions](#instructions)
-* [Contributing](#contributing)
+* [How I built the Memory Game](#howibuiltthememorygame)
+
+
+
+## How to Play
+[Click the link here ](https://oliver-gomes.github.io/projects/memory-game)
 
 ## Instructions
+- Click on a card
+- Keep flipping the cards and match up each pair
+- remember each flipped card to train your memory and help match faster with less moves
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## How I built the Memory Game
+- created ul element, added class property and shuffled through cardList to randomly added card to the ul element 
+- display all the randomly added cards from the ul element
+- created function flipCard( ) & unflipCard which flips the card and check for matching icon if not then unflip it.
+- created function checkForMatch() which checks two flipped card and if matched it use disableCard( ) to freeze the card otherwise unflip( ) and scoreUpdateUI( ).
+- lastly made resetGame( ) which fires when reset button is pressed.
+- Overall, lot of critical thinking went into the process of making this project come alive. Mostly on making the right function which need to be invoked at the right time to have impact in the game play. Also, spend time on Chrome Developer tool to test out some function and how it's effecting the game and change according to need.
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+# Hope you enjoy the game ! 
