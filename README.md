@@ -1,7 +1,7 @@
 # Memory Game Project
 This Memory Game App is a project from the [Front End Web Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001) by [Udacity](https://www.udacity.com/).
 
-![project image](https://oliver-gomes.github.io/images/gif/memory-game.gif)
+![project image](https://github.com/oliver-gomes/oliver-gomes.github.io/blob/master/images/design/memory-game.gif?raw=true)
 ## Table of Contents
 
 * [How to play](#howtoplay)
